@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService, FacebookLoginProvider, SocialUser} from 'angularx-social-login';
+import {AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../shared/services/account.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {SharedDataService} from '../../shared/data/shared-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +24,9 @@ export class LoginComponent implements OnInit {
     private accountService: AccountService,
     private formBuilder: FormBuilder,
     private pagesRouter: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private spinner: NgxSpinnerService,
+    private sharedData: SharedDataService
   ) {
 
   }
@@ -35,14 +39,41 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
-      this.accountService.loginWithFacebook(user.authToken).subscribe(token => {
+  signInWithGoogle(): void {
+    this.spinner.show();
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
+      this.accountService.loginWithGoogle(user.idToken).subscribe(token => {
+        this.spinner.hide();
         console.log('id_token = ' + token.id_token);
         this.jwt = token.id_token;
-        this.pagesRouter.navigate(['/dashboard']);
+        if (this.jwt != null) {
+          this.pagesRouter.navigate(['/dashboard']);
+        } else {
+          this.sharedData.user = user;
+          this.pagesRouter.navigate(['/register']);
+        }
       }, error1 => {
-        console.log('error: ' + error1);
+        this.spinner.hide();
+        console.log(error1);
+      });
+    });
+  }
+  signInWithFB(): void {
+    this.spinner.show();
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
+      this.accountService.loginWithFacebook(user.authToken).subscribe(token => {
+        this.spinner.hide();
+        console.log('id_token = ' + token.id_token);
+        this.jwt = token.id_token;
+        if (this.jwt != null) {
+
+          this.pagesRouter.navigate(['/dashboard']);
+        } else {
+          this.pagesRouter.navigate(['/register']);
+        }
+      }, error1 => {
+        this.spinner.hide();
+        console.log(error1);
       });
     });
   }
@@ -57,12 +88,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.spinner.show();
     this.accountService.login(this.email.value, this.password.value, false).subscribe(token => {
+      this.spinner.hide();
       console.log('id_token = ' + token.id_token);
       this.jwt = token.id_token;
       this.toast.success('Login success');
       this.pagesRouter.navigate(['/dashboard']);
     }, error1 => {
+      this.spinner.hide();
       console.log(error1);
       this.toast.error('Login failed');
     });

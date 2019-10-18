@@ -8,7 +8,8 @@ import {JWTToken} from '../models/jwtToken';
   providedIn: 'root'
 })
 export class AccountService {
-  fbAuthUrl = environment.url + 'social/fb/fb-authentication';
+  fbAuthUrl = environment.url + 'social/fb-auth';
+  googleAuthUrl = environment.url + 'social/google-auth';
   loginURL = environment.url + 'users/authenticate';
 
   httpOptions = {
@@ -21,6 +22,11 @@ export class AccountService {
   loginWithFacebook(token: string): Observable<JWTToken> {
     const body = JSON.stringify({access_token: token});
     return this.http.post<JWTToken>(this.fbAuthUrl, body, this.httpOptions);
+  }
+
+  loginWithGoogle(token: string): Observable<JWTToken> {
+    const body = JSON.stringify({access_token: token});
+    return this.http.post<JWTToken>(this.googleAuthUrl, body, this.httpOptions);
   }
 
   login(email: string, password: string, rememberMe: boolean): Observable<JWTToken> {

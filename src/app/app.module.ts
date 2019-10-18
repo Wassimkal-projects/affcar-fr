@@ -19,11 +19,12 @@ import {AppRoutingModule} from './app.routing';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {ChartsModule} from 'ng2-charts';
-import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AccountService} from './shared/services/account.service';
 import {ToastrModule} from 'ngx-toastr';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -34,10 +35,10 @@ const APP_CONTAINERS = [
 ];
 
 const config = new AuthServiceConfig([
-  /*  {
+    {
       id: GoogleLoginProvider.PROVIDER_ID,
-      provider: new GoogleLoginProvider('Google-OAuth-Client-Id')
-    },*/
+      provider: new GoogleLoginProvider('196194089193-3ks6sacirmdorvbmsra2o43t745hdbtd.apps.googleusercontent.com')
+    },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider('1022624488081887')
@@ -49,6 +50,7 @@ export function provideConfig() {
 }
 @NgModule({
   imports: [
+    NgxSpinnerModule,
     SocialLoginModule,
     BrowserModule,
     BrowserAnimationsModule,
