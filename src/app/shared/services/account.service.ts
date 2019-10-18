@@ -11,6 +11,7 @@ export class AccountService {
   fbAuthUrl = environment.url + 'social/fb-auth';
   googleAuthUrl = environment.url + 'social/google-auth';
   loginURL = environment.url + 'users/authenticate';
+  registerURL = environment.url + 'users/registerUser';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -32,5 +33,10 @@ export class AccountService {
   login(email: string, password: string, rememberMe: boolean): Observable<JWTToken> {
     const body = JSON.stringify({email: email, password: password, rememberMe: rememberMe});
     return this.http.post<JWTToken>(this.loginURL, body, this.httpOptions);
+  }
+
+  register(email: string, password: string): Observable<any> {
+    const body = JSON.stringify({email: email, password: password});
+    return this.http.post<any>(this.registerURL, body, this.httpOptions);
   }
 }

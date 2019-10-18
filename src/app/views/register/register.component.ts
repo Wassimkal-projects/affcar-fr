@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedDataService} from '../../shared/data/shared-data.service';
+import {AccountService} from '../../shared/services/account.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +13,11 @@ export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
+    private accountService: AccountService,
     private formBuilder: FormBuilder,
-    private sharedData: SharedDataService
+    private sharedData: SharedDataService,
+    private spinner: NgxSpinnerService,
+    private toast: ToastrService
   ) {
   }
 
@@ -36,6 +42,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.spinner.show();
+    this.accountService.register(this.email.value, this.password.value).subscribe(() => {
+      this.toast.success('User created, please check email for activation');
+      this.spinner.hide();
+    }, error1 => {
+      this.toast.error('Sign up failed');
+      this.spinner.hide();
+    });
   }
 
   ngOnInit(): void {
