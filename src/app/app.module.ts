@@ -25,6 +25,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AccountService} from './shared/services/account.service';
 import {ToastrModule} from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { UserFormComponent } from './views/user-form/user-form.component';
+import {ArchwizardModule} from 'angular-archwizard';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -70,7 +72,8 @@ export function provideConfig() {
       timeOut: 3000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
-    })
+    }),
+    ArchwizardModule
   ],
   declarations: [
     AppComponent,
@@ -78,7 +81,8 @@ export function provideConfig() {
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserFormComponent,
   ],
   providers: [
     AccountService,

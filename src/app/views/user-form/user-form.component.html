@@ -1,0 +1,175 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <aw-wizard [navBarLayout]="'large-empty-symbols'">
+                <aw-wizard-step stepTitle="Account type"
+                                [navigationSymbol]="{ symbol: '&#xf2dd;', fontFamily: 'FontAwesome' }">
+                  <div>
+                    <div class="row">
+                      <div class="p-4">
+                        <p> Are you a driver ?</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button type="button" class="btn btn-success btn-block" awNextStep>Next Step</button>
+                      </div>
+                      <!--<button type="button" class="btn btn-success" [awGoToStep]="{stepIndex: 2}">Go directly to third-->
+                      <!--Step-->
+                      <!--</button>-->
+                    </div>
+
+                  </div>
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Mandatory information">
+                  <div>
+                    <form [formGroup]="loginForm" (ngSubmit)="register()" novalidate>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="First name" formControlName="firstname"
+                                   autocomplete="firstname" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Last name" formControlName="lastname"
+                                   autocomplete="lastname" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="Phone number" formControlName="phone"
+                                   required>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="Age" formControlName="age"
+                                   required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Work Address" formControlName="workAddress"
+                                   required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Living Address" formControlName="livingAddress"
+                                   required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="input-group mb-3">
+                            <input type="checkbox" class="form-control" placeholder="Married ?" formControlName="isMarried"
+                                   required>
+                            <div class="p-1"> is Married ?</div>
+                          </div>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="number Of Children" formControlName="numberOfChildren"
+                                   required>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-primary btn-block" awPreviousStep>Go to previous step
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-success btn-block" awNextStep>Go to next step</button>
+                    </div>
+                  </div>
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Optional information">
+                  <div>
+                    <form [formGroup]="loginForm" (ngSubmit)="register()" novalidate>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Professional Situation" formControlName="professionalSituation"
+                               required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Interests" formControlName="interests"
+                               required>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Vehicules" formControlName="vehicules"
+                               required>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-primary btn-block" awPreviousStep>Previous Step</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button type="button" class="btn btn-success btn-block" (click)="finishFunction()">Finish</button>
+                    </div>
+                  </div>
+                </aw-wizard-step>
+              </aw-wizard>
+            </div>
+            <div class="card-footer p-4">
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-block btn-google-plus" type="button"><span>Google</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

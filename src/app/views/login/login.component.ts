@@ -56,11 +56,15 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         console.log(error1);
       });
+    }, error2 => {
+      console.log(error2);
+      this.spinner.hide();
     });
   }
   signInWithFB(): void {
     this.spinner.show();
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
+      console.log(user);
       this.accountService.loginWithFacebook(user.authToken).subscribe(token => {
         this.spinner.hide();
         console.log('id_token = ' + token.id_token);
@@ -75,6 +79,9 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         console.log(error1);
       });
+    }, error2 => {
+      console.log(error2);
+      this.spinner.hide();
     });
   }
 

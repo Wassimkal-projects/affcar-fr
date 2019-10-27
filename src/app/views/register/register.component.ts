@@ -55,21 +55,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
-      // Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'),
-      // Validators.minLength(5), Validators.maxLength(254)]],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
       password: ['', [Validators.required]],
       passwordConfirm: ['', [Validators.required]],
     });
-    this.fillForm();
-  }
-
-  private fillForm() {
-    if (this.sharedData.user) {
-      this.firstname.setValue(this.sharedData.user.firstName);
-      this.lastname.setValue(this.sharedData.user.lastName);
-      this.email.setValue(this.sharedData.user.email);
-    }
   }
 }
