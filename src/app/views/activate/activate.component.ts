@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from '../../shared/services/account.service';
-import {ActivatedRoute, NavigationEnd, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

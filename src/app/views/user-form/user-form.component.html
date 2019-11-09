@@ -27,7 +27,7 @@
                 </aw-wizard-step>
                 <aw-wizard-step stepTitle="Mandatory information">
                   <div>
-                    <form [formGroup]="loginForm" (ngSubmit)="register()" novalidate>
+                    <form [formGroup]="loginForm" novalidate>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="input-group mb-3">
@@ -122,7 +122,7 @@
                 </aw-wizard-step>
                 <aw-wizard-step stepTitle="Optional information">
                   <div>
-                    <form [formGroup]="loginForm" (ngSubmit)="register()" novalidate>
+                    <form [formGroup]="loginForm"  novalidate>
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="icon-user"></i></span>
@@ -151,21 +151,13 @@
                       <button type="button" class="btn btn-primary btn-block" awPreviousStep>Previous Step</button>
                     </div>
                     <div class="col-md-6">
-                      <button type="button" class="btn btn-success btn-block" (click)="finishFunction()">Finish</button>
+                      <button type="button" class="btn btn-success btn-block">Finish</button>
                     </div>
                   </div>
                 </aw-wizard-step>
               </aw-wizard>
             </div>
             <div class="card-footer p-4">
-              <div class="row">
-                <div class="col-6">
-                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-block btn-google-plus" type="button"><span>Google</span></button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
