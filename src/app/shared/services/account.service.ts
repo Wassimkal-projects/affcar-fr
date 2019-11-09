@@ -4,14 +4,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {JWTToken} from '../models/jwtToken';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AccountService {
   fbAuthUrl = environment.url + 'social/fb-auth';
   googleAuthUrl = environment.url + 'social/google-auth';
   loginURL = environment.url + 'users/authenticate';
   registerURL = environment.url + 'users/registerUser';
+  activateURL = environment.url + 'users/activateUser?key='
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -38,5 +37,9 @@ export class AccountService {
   register(email: string, password: string): Observable<any> {
     const body = JSON.stringify({email: email, password: password});
     return this.http.post<any>(this.registerURL, body, this.httpOptions);
+  }
+
+  activateAccount(key: string): Observable<any> {
+    return this.http.post<any>(this.activateURL + key, null);
   }
 }

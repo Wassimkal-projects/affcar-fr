@@ -27,6 +27,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { UserFormComponent } from './views/user-form/user-form.component';
 import {ArchwizardModule} from 'angular-archwizard';
+import { ActivateComponent } from './views/activate/activate.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -81,8 +82,7 @@ export function provideConfig() {
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
-    UserFormComponent,
+    RegisterComponent
   ],
   providers: [
     AccountService,

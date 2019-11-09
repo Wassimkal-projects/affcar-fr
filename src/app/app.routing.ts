@@ -15,7 +15,14 @@ export const routes: Routes = [
   {path: '500', component: P500Component, data: {title: 'Page 500'}},
   {path: 'login', component: LoginComponent, data: {title: 'Login Page'}},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
-  {path: 'user-form', component: UserFormComponent, data: {title: 'User Form Page'}},
+  {
+    path: 'user-form',
+    loadChildren: ()=> import('./views/user-form/user-form.module').then(m => m.UserFormModule)
+  },
+  {
+    path: 'activate',
+    loadChildren: ()=> import('./views/activate/activate.module').then(m => m.ActivateModule)
+  },
   {
     path: 'home', component: DefaultLayoutComponent, data: {title: 'Home'},
     children: [
