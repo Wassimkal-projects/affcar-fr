@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {JWTToken} from '../models/jwtToken';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable()
 export class AccountService {
@@ -16,7 +17,7 @@ export class AccountService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
   }
 
   loginWithFacebook(token: string): Observable<JWTToken> {
@@ -41,5 +42,10 @@ export class AccountService {
 
   activateAccount(key: string): Observable<any> {
     return this.http.post<any>(this.activateURL + key, null);
+  }
+
+  isAuthenticated() {
+    const token = sessionStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }

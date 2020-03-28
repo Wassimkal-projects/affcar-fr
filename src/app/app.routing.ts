@@ -7,7 +7,8 @@ import {P404Component} from './views/error/404.component';
 import {P500Component} from './views/error/500.component';
 import {LoginComponent} from './views/login/login.component';
 import {RegisterComponent} from './views/register/register.component';
-import {UserFormComponent} from './views/user-form/user-form.component';
+import {AuthService} from 'angularx-social-login';
+import {AuthGuardService} from './shared/services/auth-guard.service';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -17,15 +18,19 @@ export const routes: Routes = [
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {
     path: 'user-form',
-    loadChildren: ()=> import('./views/user-form/user-form.module').then(m => m.UserFormModule)
+    loadChildren: () => import('./views/user-form/user-form.module').then(m => m.UserFormModule)
   },
   {
     path: 'activate',
-    loadChildren: ()=> import('./views/activate/activate.module').then(m => m.ActivateModule)
+    loadChildren: () => import('./views/activate/activate.module').then(m => m.ActivateModule)
   },
   {
-    path: 'home', component: DefaultLayoutComponent, data: {title: 'Home'},
+    path: 'home', component: DefaultLayoutComponent, data: {title: 'Home'}, canActivate: [AuthGuardService],
     children: [
+      {
+        path: 'campaign',
+        loadChildren: () => import('./views/campaign/campaign.module').then(m => m.CampaignModule)
+      },
       {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
@@ -64,7 +69,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

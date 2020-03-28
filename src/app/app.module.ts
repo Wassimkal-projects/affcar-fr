@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
@@ -25,9 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AccountService} from './shared/services/account.service';
 import {ToastrModule} from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import { UserFormComponent } from './views/user-form/user-form.component';
 import {ArchwizardModule} from 'angular-archwizard';
-import { ActivateComponent } from './views/activate/activate.component';
+import {CampaignModule} from './views/campaign/campaign.module';
+import {JWT_OPTIONS, JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -86,10 +85,8 @@ export function provideConfig() {
   ],
   providers: [
     AccountService,
-    {
-    provide: LocationStrategy,
-      useClass: HashLocationStrategy,
-    },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

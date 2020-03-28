@@ -47,20 +47,24 @@ export class LoginComponent implements OnInit {
         console.log('id_token = ' + token.id_token);
         this.jwt = token.id_token;
         if (this.jwt != null) {
-          this.pagesRouter.navigate(['/dashboard']);
+          sessionStorage.setItem('token', this.jwt);
+          this.pagesRouter.navigate(['home']);
         } else {
           this.sharedData.user = user;
           this.pagesRouter.navigate(['/register']);
         }
       }, error1 => {
         this.spinner.hide();
+        this.toast.error('Login with google failed');
         console.log(error1);
       });
     }, error2 => {
       console.log(error2);
+      this.toast.error('Login with google failed');
       this.spinner.hide();
     });
   }
+
   signInWithFB(): void {
     this.spinner.show();
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
@@ -69,19 +73,17 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         console.log('id_token = ' + token.id_token);
         this.jwt = token.id_token;
-        if (this.jwt != null) {
-
-          this.pagesRouter.navigate(['/dashboard']);
-        } else {
-          this.pagesRouter.navigate(['/register']);
-        }
+        sessionStorage.setItem('token', this.jwt);
+        this.pagesRouter.navigate(['home']);
       }, error1 => {
         this.spinner.hide();
+        this.toast.error('Error loggin in');
         console.log(error1);
       });
     }, error2 => {
       console.log(error2);
       this.spinner.hide();
+      this.toast.error('Error loggin in');
     });
   }
 
@@ -101,7 +103,7 @@ export class LoginComponent implements OnInit {
       console.log('id_token = ' + token.id_token);
       this.jwt = token.id_token;
       this.toast.success('Login success');
-      this.pagesRouter.navigate(['/dashboard']);
+      this.pagesRouter.navigate(['home/dashboard']);
     }, error1 => {
       this.spinner.hide();
       console.log(error1);

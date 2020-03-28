@@ -5,19 +5,29 @@
         <div class="col-md-6 mx-auto">
           <div class="card mx-4">
             <div class="card-body p-4">
+              <div class="container text-center">
+                Aidez nous à mieux vous connaître
+              </div>
               <aw-wizard [navBarLayout]="'large-empty-symbols'">
                 <aw-wizard-step stepTitle="Account type"
                                 [navigationSymbol]="{ symbol: '&#xf2dd;', fontFamily: 'FontAwesome' }">
                   <div>
-                    <div class="row">
-                      <div class="p-4">
-                        <p> Are you a driver ?</p>
+                    <div class="row p-2">
+                      <div class="col text-center">
+                        Vous êtes ?
+                      </div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="col text-center ">
+                        <button class="btn btn-secondary " awNextStep>Marque</button>
+                      </div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="col text-center">
+                        <button class="btn btn-secondary" awNextStep>Ambassadeur</button>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-6">
-                        <button type="button" class="btn btn-success btn-block" awNextStep>Next Step</button>
-                      </div>
                       <!--<button type="button" class="btn btn-success" [awGoToStep]="{stepIndex: 2}">Go directly to third-->
                       <!--Step-->
                       <!--</button>-->
@@ -25,7 +35,8 @@
 
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step stepTitle="Mandatory information">
+                <aw-wizard-step stepTitle="Mandatory information"
+                                [navigationSymbol]="{ symbol: '&#xf129', fontFamily: 'FontAwesome' }">
                   <div>
                     <form [formGroup]="loginForm" novalidate>
                       <div class="row">
