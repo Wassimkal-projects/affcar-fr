@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {JWTToken} from '../models/jwtToken';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {ParsedToken} from '../models/parsed-token';
 
 @Injectable()
 export class AccountService {
@@ -47,5 +48,13 @@ export class AccountService {
   isAuthenticated() {
     const token = sessionStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  getParsedToken(): ParsedToken {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      console.log(this.jwtHelper.decodeToken(token));
+      return this.jwtHelper.decodeToken(token);
+    }
   }
 }

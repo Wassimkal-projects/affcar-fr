@@ -89,9 +89,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      // Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'),
-      // Validators.minLength(5), Validators.maxLength(254)]],
+      email: ['', [Validators.required],
+      Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'),
+      Validators.minLength(5), Validators.maxLength(254)],
       password: ['', [Validators.required]]
     });
   }
@@ -102,8 +102,8 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       console.log('id_token = ' + token.id_token);
       this.jwt = token.id_token;
-      this.toast.success('Login success');
-      this.pagesRouter.navigate(['home/dashboard']);
+      sessionStorage.setItem('token', this.jwt);
+      this.pagesRouter.navigate(['/home/dashboard']);
     }, error1 => {
       this.spinner.hide();
       console.log(error1);

@@ -18,11 +18,11 @@ export class ActivateComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       this.accountService.activateAccount(params['key'])
-        .subscribe((res: any) => {
-          if(params['key']) {
-            this.router.navigate(['../user-form']);
+        .subscribe(() => {
+          if (params['key']) {
+            this.router.navigate(['../login']);
           } else {
-            this.toast.error('there is no key to activate user');
+            this.toast.error('There is no key to activate user');
             this.router.navigate(['../login']);
           }
         }, error => {
