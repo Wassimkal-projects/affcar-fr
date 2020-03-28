@@ -55,7 +55,8 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   private getImageUrl() {
     if (this.getParsedToken().img) {
       this.imgUrl = this.getParsedToken().img;
+    } else {
+      this.imgUrl = 'assets/img/avatars/fb-avatar.jpg';
     }
-    this.imgUrl = 'assets/img/avatars/fb-avatar.jpg';
   }
 }
