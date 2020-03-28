@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  url: 'https://affcar-bc.herokuapp.com/api/'
+  url: 'http://localhost:8080/api/'
 };
