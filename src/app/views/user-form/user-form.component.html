@@ -9,8 +9,9 @@
                 Aidez nous à mieux vous connaître
               </div>
               <aw-wizard [navBarLayout]="'large-empty-symbols'">
-                <aw-wizard-step stepTitle="Account type"
-                                [navigationSymbol]="{ symbol: '&#xf2dd;', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step stepTitle="Account type">
+                                <!--[navigationSymbol]="{ symbol: '&#xf2dd;', fontFamily: 'FontAwesome' }"-->
+
                   <div>
                     <div class="row p-2">
                       <div class="col text-center">
@@ -35,8 +36,8 @@
 
                   </div>
                 </aw-wizard-step>
-                <aw-wizard-step stepTitle="Mandatory information"
-                                [navigationSymbol]="{ symbol: '&#xf129', fontFamily: 'FontAwesome' }">
+                <aw-wizard-step stepTitle="Mandatory information">
+                                <!--[navigationSymbol]="{ symbol: '&#xf129', fontFamily: 'FontAwesome' }"-->
                   <div>
                     <form [formGroup]="loginForm" novalidate>
                       <div class="row">
