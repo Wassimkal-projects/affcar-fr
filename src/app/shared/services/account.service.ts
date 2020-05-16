@@ -53,7 +53,6 @@ export class AccountService {
   getParsedToken(): ParsedToken {
     const token = sessionStorage.getItem('token');
     if (token) {
-      console.log(this.jwtHelper.decodeToken(token));
       return this.jwtHelper.decodeToken(token);
     }
   }

@@ -12,7 +12,6 @@ export class CampaignComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('WTFFFFF');
   }
 
 }

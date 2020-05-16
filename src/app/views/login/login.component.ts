@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
       this.accountService.loginWithGoogle(user.idToken).subscribe(token => {
         this.spinner.hide();
-        console.log('id_token = ' + token.id_token);
         this.jwt = token.id_token;
         if (this.jwt != null) {
           sessionStorage.setItem('token', this.jwt);
@@ -56,10 +55,8 @@ export class LoginComponent implements OnInit {
       }, error1 => {
         this.spinner.hide();
         this.toast.error('Login with google failed');
-        console.log(error1);
       });
     }, error2 => {
-      console.log(error2);
       this.toast.error('Login with google failed');
       this.spinner.hide();
     });
@@ -68,17 +65,14 @@ export class LoginComponent implements OnInit {
   signInWithFB(): void {
     this.spinner.show();
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
-      console.log(user);
       this.accountService.loginWithFacebook(user.authToken).subscribe(token => {
         this.spinner.hide();
-        console.log('id_token = ' + token.id_token);
         this.jwt = token.id_token;
         sessionStorage.setItem('token', this.jwt);
         this.pagesRouter.navigate(['home']);
       }, error1 => {
         this.spinner.hide();
         this.toast.error('Error loggin in');
-        console.log(error1);
       });
     }, error2 => {
       console.log(error2);
@@ -100,13 +94,11 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.accountService.login(this.email.value, this.password.value, false).subscribe(token => {
       this.spinner.hide();
-      console.log('id_token = ' + token.id_token);
       this.jwt = token.id_token;
       sessionStorage.setItem('token', this.jwt);
       this.pagesRouter.navigate(['/home/dashboard']);
     }, error1 => {
       this.spinner.hide();
-      console.log(error1);
       this.toast.error('Login failed');
     });
   }
